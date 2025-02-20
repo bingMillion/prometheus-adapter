@@ -143,6 +143,7 @@ func (p *prometheusProvider) buildQuery(ctx context.Context, info provider.Custo
 	if !found {
 		return nil, provider.NewMetricNotFoundError(info.GroupResource, info.Metric)
 	}
+        klog.Infof("Generated PromQL: %s", query) // 使用 klog 输出到标准输出
 
 	// TODO: use an actual context
 	queryResults, err := p.promClient.Query(ctx, pmodel.Now(), query)
